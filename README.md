@@ -2,4 +2,5 @@
 Twitter clone project
 
 ## High Level Design
-![twitter-clone-diagram.png](statics/twitter-clone-diagram.png)
+![twitter-clone-1.png](statics/twitter-clone-1.png)
+![twitter-clone-2.png](statics/twitter-clone-2.png)
