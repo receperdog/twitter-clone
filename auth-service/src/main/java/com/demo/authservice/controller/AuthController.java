@@ -3,7 +3,6 @@ package com.demo.authservice.controller;
 import com.demo.authservice.dtos.AuthenticationRequest;
 import com.demo.authservice.dtos.AuthenticationResponse;
 import com.demo.authservice.dtos.UserRegisterRequest;
-import com.demo.authservice.model.User;
 import com.demo.authservice.service.UserService;
 import com.demo.authservice.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +32,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
+    public ResponseEntity<AuthenticationResponse> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authenticationRequest.username(), authenticationRequest.password())
