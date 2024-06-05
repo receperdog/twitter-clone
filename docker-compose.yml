@@ -1,11 +1,26 @@
 version: '3.8'
 
 services:
-  twitter-postgres:
-    image: postgres:15.4-alpine3.18
+  postgres:
+    image: "postgres:latest"
+    container_name: "postgres"
     environment:
-      POSTGRES_DB: tweet_db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: authdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
+
+  auth-service:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/authdb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
